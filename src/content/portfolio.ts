@@ -178,7 +178,7 @@ export const projects: Project[] = [
       "Implemented automated remediation actions such as pod isolation and termination using Kubernetes and Cilium, with circuit-breaker logic to prevent repeated actions.",
       "Integrated a local LLM through Ollama to generate structured SOC-style incident explanations using retrieved Falco rules, MITRE ATT&CK context, and remediation data.",
     ],
-    links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji" }],
+    links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/kubryon" }],
   },
   {
     tag: "SOC · Detection · Automation",
