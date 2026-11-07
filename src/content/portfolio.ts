@@ -39,6 +39,7 @@ export const skillGroups = [
           "Snort",
           "Sysmon",
           "Falco",
+          "T-Pot",
           "MITRE ATT&CK",
         ],
       },
@@ -51,6 +52,7 @@ export const skillGroups = [
           "Shuffle",
           "TheHive",
           "Cortex",
+          "VirusTotal",
           "Security Automation",
         ],
       },
@@ -60,9 +62,50 @@ export const skillGroups = [
           "Kali Linux",
           "Metasploit",
           "Nmap",
+          "Burp Suite",
+          "sqlmap",
+          "Gobuster",
           "Hydra",
+          "John the Ripper",
+          "Nikto",
           "CrackMapExec",
           "Atomic Red Team",
+        ],
+      },
+      {
+        title: "Application Security & DevSecOps",
+        items: [
+          "DevSecOps",
+          "OWASP Top 10",
+          "Gitleaks",
+          "Semgrep",
+          "Grype",
+          "Trivy",
+          "Checkov",
+          "OWASP ZAP",
+          "DefectDojo",
+          "ModSecurity",
+        ],
+      },
+      {
+        title: "Cloud Security",
+        items: [
+          "Microsoft Sentinel",
+          "KQL",
+          "Microsoft Defender for Cloud",
+          "Azure Logic Apps",
+          "Prowler",
+          "CIS Benchmark",
+        ],
+      },
+      {
+        title: "AI for Security",
+        items: [
+          "LLM",
+          "RAG",
+          "Ollama",
+          "Isolation Forest",
+          "Anomaly Detection",
         ],
       },
       {
@@ -70,6 +113,7 @@ export const skillGroups = [
         items: [
           "pfSense",
           "Wireshark",
+          "OpenVPN",
           "Networking",
           "DNS",
           "VPN",
@@ -84,11 +128,14 @@ export const skillGroups = [
       {
         title: "Cloud & Containers",
         items: [
+          "Azure",
           "Kubernetes",
           "Docker",
           "Cilium",
           "Minikube",
           "Kubernetes Goat",
+          "Azure CLI",
+          "ARM Templates",
           "VMware",
         ],
       },
@@ -109,7 +156,6 @@ export const skillGroups = [
           "Python",
           "Java",
           "JavaScript",
-          "C",
           "C++",
           "SQL",
         ],
@@ -120,7 +166,6 @@ export const skillGroups = [
           "Git",
           "GitHub",
           "Jenkins",
-          "Maven",
           "SonarQube",
           "Prometheus",
           "Grafana",
@@ -199,6 +244,76 @@ export const projects: Project[] = [
     ],
     links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/Detection-Monitoring-homelab" }],
   },
+   {
+    tag: "DevSecOps · CI/CD · AppSec",
+    title: "DevSecOps — Secure CI/CD Pipeline",
+    stack: [
+      "Jenkins",
+      "Gitleaks",
+      "SonarQube",
+      "Grype",
+      "Trivy",
+      "Checkov",
+      "OWASP ZAP",
+      "DefectDojo",
+    ],
+    bullets: [
+      "Transformed a plain DevOps pipeline into a full DevSecOps pipeline integrating six automated security controls: secret scanning (Gitleaks), SAST (SonarQube), SCA (Grype), container image scanning (Trivy), IaC scanning (Checkov), and DAST (OWASP ZAP).",
+      "Implemented shift-left security with SonarLint and pre-commit hooks (Gitleaks + Semgrep) that block secrets and vulnerabilities before commit.",
+      "Centralized all scanner results in DefectDojo and built a quality gate that blocks deployment on any Critical/High vulnerability (CVSS ≥ 7), with Slack alerting on build status.",
+      "Applied risk-based remediation — patched fixable CVEs (reducing Critical findings by ~70%) and formally risk-accepted the rest with documented justification and expiry.",
+    ],
+    links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/Devops" }],
+  },
+
+
+   {
+    tag: "Pentest · Web · OWASP Top 10",
+    title: "Web Application Penetration Test — OWASP Top 10",
+    stack: [
+      "Burp Suite",
+      "sqlmap",
+      "Nmap",
+      "Gobuster",
+      "John the Ripper",
+      "ModSecurity",
+      "Python",
+      "Kali Linux",
+    ],
+    bullets: [
+      "Performed a full manual web application pentest against OWASP Juice Shop and DVWA, identifying 13 vulnerabilities covering all 10 categories of the OWASP Top 10 (2021) — 3 Critical, 6 High, 4 Medium.",
+      "Chained multiple flaws into a complete admin compromise: SQL injection login bypass, a cracked weak password hash leaked in the JWT, IDOR, and business-logic abuse — plus a separate forged unsigned JWT (alg:none) admin takeover.",
+      "Exploited and documented SSRF, DOM-based XSS, CSRF, verbose error disclosure, and vulnerable components, with per-finding write-ups and evidence.",
+      "Built a Python tool to automate recon and re-run all finding checks, then validated detection by placing ModSecurity + OWASP CRS in front of the app — confirming it blocks injection attacks (403) while logic/auth flaws still require code-level fixes.",
+    ],
+    links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/owasp-top10-pentest" }],
+  },
+
+    {
+    tag: "Cloud Security · SOC · Azure",
+    title: "Azure Cloud SOC Lab — Detection & Auto-Remediation",
+    stack: [
+      "Microsoft Sentinel",
+      "KQL",
+      "Defender for Cloud",
+      "Azure Logic Apps",
+      "Prowler",
+      "Azure CLI",
+      "Kali Linux",
+    ],
+    bullets: [
+      "Built a cloud SOC on Azure and Microsoft Sentinel: simulated 8 attack techniques across 6 MITRE ATT&CK tactics from a Kali box using the Azure CLI, then detected and (in two cases) auto-remediated them.",
+      "Wrote 9 Sentinel analytics rules in KQL and deployed them as ARM templates (detection-as-code), including a correlation rule that only fires when one identity performs several suspicious actions in a short window.",
+      "Developed 2 auto-remediation playbooks with Azure Logic Apps — disabling public access on an exposed storage account and removing an NSG rule exposing a port to the internet — each running in under a minute with Discord alerting.",
+      "Hardened storage accounts and validated the before/after posture with Prowler against the CIS Azure benchmark, applying auto-remediation only to clearly-malicious, reversible actions to avoid breaking legitimate access.",
+    ],
+    links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/Azure-Cloud-SOC-Lab" }],
+  },
+
+
+
+
+
   {
     tag: "Security Automation",
     title: "Automated SOC Pipeline — Wazuh + VirusTotal",
@@ -216,25 +331,7 @@ export const projects: Project[] = [
     ],
     links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/Automated-SOC-Pipeline-Wazuh-Active-Response-VirusTotal" }],
   },
-  {
-    tag: "DevOps · CI/CD",
-    title: "DevOps — CI/CD Pipeline",
-    stack: [
-      "Jenkins",
-      "Docker",
-      "Kubernetes",
-      "SonarQube",
-      "Spring Boot",
-      "Maven",
-      "MySQL",
-    ],
-    bullets: [
-      "Designed a complete CI/CD pipeline for a Spring Boot and MySQL application.",
-      "Automated Maven builds, SonarQube code analysis, Docker image creation and DockerHub publishing.",
-      "Deployed the application to Kubernetes on Minikube with Jenkins-triggered automation.",
-    ],
-    links: [{ label: "View on GitHub ↗", href: "https://github.com/AnisBengaji/Devops" }],
-  },
+
   {
     tag: "Web · Desktop · Full Stack",
     title: "Tripin",
@@ -388,17 +485,60 @@ export const timeline: TimelineEntry[] = [
 export type Certificate = {
   title: string;
   issuer: string;
+  date?: string;          // e.g. "2025"
+  credentialUrl?: string; // "Show credential" link from LinkedIn (Credly / issuer verify page)
 };
 
 export const certificates: Certificate[] = [
-  { title: "Ethical Hacker", issuer: "Cisco" },
-  { title: "Cyber Threat Management", issuer: "Cisco" },
-  { title: "Blue Team Junior Analyst", issuer: "Security Blue Team" },
-  { title: "Cyberops Associate", issuer: "Cisco" },
-  { title: "Fortinet Certified Associate in Cybersecurity", issuer: "Fortinet" },
-  { title: "Scientific Computing with Python", issuer: "freeCodeCamp" },
-  { title: "Certified Red Team Operations Management (CRTOM)", issuer: "Red Team Leaders" },
-  { title: "Certified Phishing Prevention Specialist", issuer: "Hack & Fix" },
+  {
+    title: "Ethical Hacker",
+    issuer: "Cisco",
+    date: "2025",           
+    credentialUrl: "https://www.credly.com/badges/02a6def8-61f0-4122-a7b9-49f2d2fa66ec/linked_in_profile",   // paste "Show credential" link
+  },
+  {
+    title: "Cyber Threat Management",
+    issuer: "Cisco",
+    date: "2025",
+    credentialUrl: "https://www.credly.com/badges/0f1d30d5-796f-461d-bc7e-a325422a851f/linked_in_profile",
+  },
+  {
+    title: "Blue Team Junior Analyst",
+    issuer: "Security Blue Team",
+    date: "2025",
+    credentialUrl: "https://elearning.centri.org/login",
+  },
+  {
+    title: "Cyberops Associate",
+    issuer: "Cisco",
+    date: "2026",
+    credentialUrl: "https://www.credly.com/badges/e48da370-0dbd-4032-8bbb-0254c1b322a1/linked_in_profile",
+  },
+  {
+    title: "Cloud Security Foundationst",
+    issuer: "AWS",
+    date: "",
+    credentialUrl: "https://www.credly.com/badges/8c8ef8b8-6558-4e1f-82d5-b0ac1837f94d/public_url",
+  },
+  {
+    title: "Fortinet Certified Associate in Cybersecurity",
+    issuer: "Fortinet",
+    date: "2025",
+    credentialUrl: "https://training.fortinet.com/admin/tool/certificate/index.php",
+  },
+
+  {
+    title: "Certified Red Team Operations Management (CRTOM)",
+    issuer: "Red Team Leaders",
+    date: "2025",
+    credentialUrl: "https://courses.redteamleaders.com/exam-completion/e43790b33907f1be",
+  },
+  {
+    title: "Certified Phishing Prevention Specialist",
+    issuer: "Hack & Fix",
+    date: "",
+    credentialUrl: "https://academy.hackandfix.com/59670b54-25e7-4950-9bb7-58d878d3042f",
+  },
 ];
 
 export type Award = {
