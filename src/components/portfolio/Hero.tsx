@@ -42,8 +42,8 @@ function TerminalCard() {
 }
 
 const cvOptions = [
-  { label: "English", href: "/cv-en.pdf" },
-  { label: "Français", href: "/cv-fr.pdf" },
+  { label: "English", href: "/english-cv.pdf" },
+  { label: "Français", href: "/french-cv.pdf" },
 ];
 
 function DownloadCvMenu() {
